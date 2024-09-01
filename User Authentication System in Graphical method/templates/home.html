@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0033cc; /* Deep blue color */
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            transition: color 0.5s, transform 0.5s, text-shadow 0.5s;
+        }
+        h1:hover {
+            color: #001a66; /* Darker blue color */
+            transform: scale(1.1);
+            text-shadow: 0 0 12px rgba(0, 51, 204, 0.8);
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .buttons a {
+            text-decoration: none;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #0072ff;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .buttons button:hover {
+            background-color: #005bb5;
+            transform: scale(1.05);
+        }
+        .buttons button:focus {
+            outline: none;
+        }
+        .buttons button:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: ripple 0.6s linear;
+        }
+        @keyframes ripple {
+            from {
+                transform: scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        .status {
+            margin-top: 20px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #4caf50;
+        }
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0.3;
+            animation: pulse 6s infinite;
+            z-index: -1;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.4;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="container">
+        <h1>Welcome to the Graphical User Authentication System</h1>
+        <div class="buttons">
+            <a href="{{ url_for('create_account') }}"><button>Create Account</button></a>
+            <a href="{{ url_for('login') }}"><button>Login</button></a>
+        </div>
+        <div class="status" id="status-message"></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var statusMessage = document.getElementById('status-message');
+            if (window.location.search.includes('message=loggedout')) {
+                statusMessage.innerHTML = '<span>You have been logged out.</span>';
+            }
+        });
+    </script>
+</body>
+</html>
