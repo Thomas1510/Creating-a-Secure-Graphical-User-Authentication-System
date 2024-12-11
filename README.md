@@ -19,9 +19,9 @@ Because life’s too short for boring logins. Upgrade your user experience and k
 ### Check A output of this project!
 
 ![Home Page](Output/1.png)
-![Encryption Page](Output/2.png)
-![Decryption Page](Output/3.png)
-![Decryption Page](Output/4.png)
+![](Output/2.png)
+![](Output/3.png)
+![](Output/4.png)
 
 ## MIT License 📜
 
